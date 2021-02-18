@@ -1,0 +1,111 @@
+https://hackernoon.com/scraping-yahoo-finance-data-using-python-ayu3zyl
+
+beautiful soup is a lot preferable to selenium
+
+also if statements are used in excel so they can be explained in this manner
+
++++
+https://hackernoon.com/scraping-yahoo-finance-data-using-python-ayu3zyl
+this looks good
+
+https://www.mattbutton.com/2019/01/24/how-to-scrape-yahoo-finance-and-extract-fundamental-stock-market-data-using-python-lxml-and-pandas/
+could be good too
+
+==
+import urllib3
+from bs4 import BeautifulSoup as bs
+import time
+import requests
+
+In [11]:
+
+def makeURLs(tckrs = ['admzx']):
+    categories = ['quote', 'risk', 'performance']
+    URLs = []
+    for tckr in tckrs:
+        for category in categories:
+            URL = 'https://www.morningstar.com/funds/xnas/{}/{}'.format(tckr, category)
+            URLs.append(URL)
+    return(URLs)
+
+In [9]:
+
+makeURLs()
+
+Out[9]:
+
+['https://www.morningstar.com/funds/xnas/admzx/quote',
+ 'https://www.morningstar.com/funds/xnas/admzx/risk',
+ 'https://www.morningstar.com/funds/xnas/admzx/performance']
+
+def dostuff():
+In [19]:
+
+def printhtmls():
+    URLs = makeURLs()
+    for url in URLs:
+        html = requests.get(url).content
+        soup = bs(html)
+        print(soup)
+        print('\n\n\n\n\n\n')
+#     return soup.select('#rawCount')[0].text
+
+In [20]:
+
+printhtmls()
+=== introduction to smeting that could be useful 
+
+
+
+scraping this website is only allowed for personal use (as per Morningstar's Terms and Conditions).
+this tool is structured in a such a way that it gently / ethically scrapes the pages it encounters (in other words, scraping data might take a bit longer given the couple of "sleep" intervals embedded in the code)
+
+
+though this scraper has specifically been built for the UK Morningstar website, it enables one to extract data from multiple non-UK universes (e.g. ETFs listed on the Xetra, Nasdaq etc)
+
+
+
+using selenium gets the current ticker stock value
+https://github.com/aparajit10/Web_Scraping/blob/master/Web_Scraping_Morningstar.ipynb
+
+
+https://github.com/rmacaraeg/yahoo_finance/blob/master/yahoo_market.ipynb
+
+- has some good sutff with beautiful soup scraping fin data off yahoo
+
+
+https://stackoverflow.com/questions/62530100/how-to-scrape-data-off-morningstar
+where i got the code for the charts 
+
+
+
+
+https://stackoverflow.com/questions/46257440/blank-list-returned-when-using-xpath-with-morningstar-key-ratios
+> talks about stages and why you need selenium
+
+>>> import requests
+>>> url = 'http://financials.morningstar.com/ratios/r.html?t=AMD&region=USA&culture=en_US'
+>>> page = requests.get(url).text
+>>> '5,858' in page
+False
+
+test this with the key ratios 'cf' 'fh' that i discovered yesterday 
+
+https://datarebellion.com/blog/scraping-financial-data-with-selenium/
+has a good story to it
+
+
+
+https://www.scrapehero.com/scrape-yahoo-finance-stock-market-data/
+
+
+https://python-forum.io/Thread-I-tried-every-way-to-scrap-morningstar-financials-data-without-success-so-far
+
+
+
+
+
+
+
+
+
